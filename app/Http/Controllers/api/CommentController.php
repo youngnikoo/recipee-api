@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Http\Controllers\API\BaseController;
+use App\Http\Controllers\api\BaseController;
 use App\Http\Resources\CommentResource;
 use App\Models\Comment;
 use App\Models\Post;
