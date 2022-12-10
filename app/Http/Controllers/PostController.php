@@ -8,6 +8,7 @@ use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\CloudinaryStorage;
 
 class PostController extends Controller
 {
@@ -55,7 +56,8 @@ class PostController extends Controller
             'image' => 'required|mimes:jpg,png,jpeg'
         ]);
 
-        $image = $request->file('image')->store('images', 'public');
+        $image = $request->file('image');
+        $savedImage = CloudinaryStorage::upload($image->getRealPath(), $image->getClientOriginalName());
 
         Post::create([
             'user_id' => Auth::user()->id,
@@ -64,7 +66,7 @@ class PostController extends Controller
             'category_id' => $request->category,
             'ingredient' => $request->ingredient,
             'direction' => $request->direction,
-            'image' => $image,
+            'image' => $savedImage,
         ]);
 
         return redirect()->route('posts.index');
@@ -116,16 +118,13 @@ class PostController extends Controller
             'image' => 'mimes:jpg,png,jpeg'
         ]);
 
-        // $image = $request->hasFile('image') ? $request->file('image')->store('images') : $request->old_image;
+        $image = $request->file('image');
 
-        switch (true) {
-            case $request->hasFile('image'):
-                $image = $request->file('image')->store('images', 'public');
-                if (Storage::exists('public/' . $request->old_image)) Storage::delete('public/' . $request->old_image);
-                break;
-            default:
-                $image = $request->old_image;
-                break;
+        if($image) {
+            $savedImage = CloudinaryStorage::replace($image, $image->getRealPath(), $image->getClientOriginalName());   
+        } else {
+            $post = Post::findOrFail($id);
+            $savedImage = $post->image;
         }
 
         Post::where('id', $id)->update([
@@ -133,7 +132,7 @@ class PostController extends Controller
             'description' => $request->description,
             'ingredient' => $request->ingredient,
             'direction' => $request->direction,
-            'image' => $image,
+            'image' => $savedImage,
         ]);
 
         return redirect()->route('posts.index');
@@ -149,9 +148,8 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        if (Storage::exists('public/' . $post->image)) Storage::delete('public/' . $post->image);
-
-        Post::destroy($id);
+        CloudinaryStorage::delete($post->image);
+        Post::destroy($post->id);
 
         return redirect()->route('posts.index');
     }

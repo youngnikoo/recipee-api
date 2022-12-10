@@ -21,7 +21,7 @@ class ShowPostResource extends JsonResource
 
         return [
             'id' => $this->id,
-            'image' => asset('storage/' . $this->image),
+            'image' => $this->image,
             'title' => $this->title,
             'description' => $descriptions,
             'ingredient' => explode(',', $ingredients),

@@ -44,7 +44,7 @@
                                         <tr>
                                             <td>{{ $key + $posts->firstItem() }}</td>
                                             <td>
-                                                <img src="{{ asset('storage/' . $post->image) }}"
+                                                <img src="{{ $post->image }}"
                                                     alt="{{ $post->name }}">
                                             </td>
                                             <td>{{ $post->title }}</td>
