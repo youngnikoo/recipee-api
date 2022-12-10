@@ -15,13 +15,17 @@ class ShowPostResource extends JsonResource
      */
     public function toArray($request)
     {
+        $descriptions = str_replace("\r\n", " ", $this->description);
+        $directions = str_replace("\r\n", "", $this->direction);
+        $ingredients = str_replace("\r\n", "", $this->ingredient);
+
         return [
             'id' => $this->id,
             'image' => asset('storage/' . $this->image),
             'title' => $this->title,
-            'description' => $this->description,
-            'ingredient' => $this->ingredient,
-            'direction' => $this->direction,
+            'description' => $descriptions,
+            'ingredient' => explode(',', $ingredients),
+            'direction' => explode(',', $directions),
             'comments' => CommentResource::collection($this->comments)
         ];
     }

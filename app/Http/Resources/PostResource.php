@@ -14,13 +14,13 @@ class PostResource extends JsonResource
      */
     public function toArray($request)
     {
+        $descriptions = str_replace("\r\n", " ", $this->description);
+
         return [
             'id' => $this->id,
             'image' => asset('storage/' . $this->image),
             'title' => $this->title,
-            'description' => $this->description,
-            'ingredient' => $this->ingredient,
-            'direction' => $this->direction
+            'description' => $descriptions
         ];
     }
 }
