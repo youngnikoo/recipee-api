@@ -5,8 +5,9 @@ Data source from : https://github.com/tomorisakura/unofficial-masakapahariini-ap
 Technology using : Deploy on Heroku, Database MySQL, Framework Laravel, Cloud for Image using Cloudinary
 
 ### Endpoint Usage
+### USING POSTMAN
 ---
-**Base Url** : `http://api-recipee.herokuapp.com/` ### USING POSTMAN
+**Base Url** : `http://api-recipee.herokuapp.com/` 
 
 | Endpoint | Usage | Example |
 |----------|-------|---------|
