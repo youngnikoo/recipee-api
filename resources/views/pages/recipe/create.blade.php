@@ -74,6 +74,16 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <select name="category" class="form-control">
+                                    <option value="">-- Select Category --</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{$category->id}}">
+                                            {{$category->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label>File input</label>
                                 <input type="file" class="form-control-file @error('image') is-invalid @enderror"
                                     name="image">

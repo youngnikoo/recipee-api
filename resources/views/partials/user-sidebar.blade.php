@@ -94,5 +94,13 @@
                 <span class="menu-title">Comments</span>
             </a>
         </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ route('categories.index') }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-contacts"></i>
+                </span>
+                <span class="menu-title">Categories</span>
+            </a>
+        </li>
     </ul>
 </nav>

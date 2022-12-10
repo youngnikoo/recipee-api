@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('pages.recipe.create');
+        $categories = Category::all();
+        return view('pages.recipe.create')->with([
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -45,6 +49,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|string|max:100',
             'description' => 'required|string|max:255',
+            'category' => 'required',
             'ingredient' => 'required|string',
             'direction' => 'required|string',
             'image' => 'required|mimes:jpg,png,jpeg'
@@ -56,6 +61,7 @@ class PostController extends Controller
             'user_id' => Auth::user()->id,
             'title' => $request->title,
             'description' => $request->description,
+            'category_id' => $request->category,
             'ingredient' => $request->ingredient,
             'direction' => $request->direction,
             'image' => $image,
@@ -84,9 +90,11 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
+        $categories = Category::all();
 
         return view('pages.recipe.edit')->with([
             'post' => $post,
+            'categories' => $categories
         ]);
     }
 
