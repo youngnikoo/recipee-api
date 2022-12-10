@@ -96,31 +96,32 @@
         <div class="row">
           <div class="col">
             <div class="card">
-              <div class="card-header">Durians stock under 5</div>
+              <div class="card-header">Data List Recipe</div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table id="order-listing" class="table">
                     <thead>
                       <tr>
                         <th>No</th>
+                        <th>Image</th>
                         <th>Name</th>
-                        <th>Stock</th>
-                        <th>Price</th>
                       </tr>
                     </thead>
                     {{-- <tbody>
-                      @foreach ($durians as $key => $durian)
+                      @foreach ($posts as $key => $post)
                       <tr>
-                        <td>{{ $key + $durians->firstItem() }}</td>
-                        <td> {{ $durian->name }} </td>
-                        <td> {{ $durian->stock }} </td>
-                        <td> Rp. {{ number_format($durian->price , 2, ',' ,'.') }} </td>
+                        <td>{{ $key + $posts->firstItem() }}</td>
+                        <td>
+                            <img src="{{  asset('storage/' . $post->image) }}" 
+                                alt="{{ $post->name }}">
+                        </td>
+                        <td> {{ $post->title }} </td>
                       </tr>
                       @endforeach
                     </tbody> --}}
                   </table>
                 </div>
-                {{-- {{ $durians->links()}} --}}
+                {{-- {{ $posts->links()}} --}}
               </div>
             </div>
           </div>

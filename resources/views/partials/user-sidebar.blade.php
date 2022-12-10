@@ -81,9 +81,17 @@
         <li class="nav-item menu-items">
             <a class="nav-link" href="{{ route('users.index') }}">
                 <span class="menu-icon">
-                    <i class="mdi mdi-contacts"></i>
+                    <i class="mdi mdi-account"></i>
                 </span>
                 <span class="menu-title">Admins</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ route('comments.index') }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-contacts"></i>
+                </span>
+                <span class="menu-title">Comments</span>
             </a>
         </li>
     </ul>

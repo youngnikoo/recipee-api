@@ -10,20 +10,19 @@
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="page-header">
-                <h3 class="page-title"> Data Recipe </h3>
+                <h3 class="page-title"> Data Comment </h3>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">User</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Data Recipe</li>
+                        <li class="breadcrumb-item active" aria-current="page">Data Comment</li>
                     </ol>
                 </nav>
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Data Recipe</h4>
+                    <h4 class="card-title">Data Comment</h4>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('posts.create') }}" class="btn btn-primary mb-2">Create</a>
                     <div class="row">
                         <div class="col-12">
                             <div class="table-responsive">
@@ -31,32 +30,21 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Image</th>
                                             <th>Name</th>
                                             <th>Description</th>
-                                            <th>Ingredients</th>
-                                            <th>Directions</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($posts as $key => $post)
+                                        @foreach ($comments as $key => $comment)
                                         <tr>
-                                            <td>{{ $key + $posts->firstItem() }}</td>
+                                            <td>{{ $key + $comments->firstItem() }}</td>
+                                            <td>{{ $comment->name }}</td>
+                                            <td>{{ $comment->description }}</td>
                                             <td>
-                                                <img src="{{ asset('storage/' . $post->image) }}"
-                                                    alt="{{ $post->name }}">
-                                            </td>
-                                            <td>{{ $post->title }}</td>
-                                            <td>{{ $post->description }}</td>
-                                            <td>{{ $post->ingredient }}</td>
-                                            <td>{{ $post->direction }}</td>
-                                            <td>
-                                                <a href="{{ route('posts.edit', $post->id) }}"
-                                                    class="btn btn-warning">Edit</a>
                                                 <form class="d-inline"
                                                     onsubmit="return confirm('Data will be Deleted, Are you sure?')"
-                                                    action="{{ route('posts.destroy', $post->id) }}" method="post">
+                                                    action="{{ route('comments.destroy', $comment->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <input type="submit" class="btn btn-danger" value="Delete">
@@ -67,7 +55,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            {{ $posts->links()}}
+                            {{ $comments->links()}}
                         </div>
                     </div>
                 </div>

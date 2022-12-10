@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -52,12 +53,15 @@ class PostController extends Controller
         $image = $request->file('image')->store('images', 'public');
 
         Post::create([
+            'user_id' => Auth::user()->id,
             'title' => $request->title,
             'description' => $request->description,
             'ingredient' => $request->ingredient,
             'direction' => $request->direction,
             'image' => $image,
         ]);
+
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -95,7 +99,6 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $oldUsername = Post::findOrFail($id)->username;
 
         $request->validate([
             'title' => 'required|string|max:100',
@@ -119,7 +122,7 @@ class PostController extends Controller
 
         Post::where('id', $id)->update([
             'title' => $request->title,
-            'description' => $request->descripton,
+            'description' => $request->description,
             'ingredient' => $request->ingredient,
             'direction' => $request->direction,
             'image' => $image,
@@ -141,7 +144,7 @@ class PostController extends Controller
         if (Storage::exists('public/' . $post->image)) Storage::delete('public/' . $post->image);
 
         Post::destroy($id);
-        
+
         return redirect()->route('posts.index');
     }
 }

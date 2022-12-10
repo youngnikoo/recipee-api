@@ -49,9 +49,12 @@
                             </div>
                             <div class="form-group">
                                 <label>Ingredients</label>
-                                <input type="number" class="form-control p_input @error('ingredient') is-invalid @enderror"
-                                    name="ingredient" value="{{ old('ingredient') }}" required>
-                                @error('ingredients')
+                                <textarea name="ingredient"
+                                    class="form-control p_input @error('ingredient') is-invalid @enderror" cols="30"
+                                    rows="10">
+                                    {{ old('ingredient')}}
+                                </textarea>
+                                @error('ingredient')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -59,8 +62,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Directions</label>
-                                <input type="number" class="form-control p_input @error('direction') is-invalid @enderror"
-                                    name="direction" value="{{ old('direction') }}" required>
+                                <textarea name="direction"
+                                    class="form-control p_input @error('direction') is-invalid @enderror" cols="30"
+                                    rows="10">
+                                    {{ old('direction')}}
+                                </textarea>
                                 @error('direction')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

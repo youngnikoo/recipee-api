@@ -14,7 +14,11 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments = Comment::orderBy('id', 'desc')->paginate(5);
+
+        return view('pages.comment.index')->with([
+            'comments' => $comments,
+        ]);
     }
 
     /**
@@ -78,8 +82,10 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy($id)
     {
-        //
+        Comment::destroy($id);
+
+        return redirect()->route('comments.index');
     }
 }
