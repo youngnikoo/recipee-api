@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\API\BaseController;
 use App\Http\Resources\CommentResource;
 use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CommentController extends BaseController
@@ -17,6 +18,8 @@ class CommentController extends BaseController
             'post_id' => 'required'
         ]);
 
+        $post = Post::find($request->post_id);
+        if (!$post) return $this->sendError("post not found");
 
         $comment = Comment::create([
             'name' => $request->name,

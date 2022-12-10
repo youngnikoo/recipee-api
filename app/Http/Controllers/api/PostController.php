@@ -18,6 +18,8 @@ class PostController extends BaseController
 
     public function show($id) {
         $post = Post::find($id);
+        
+        if (!$post) return $this->sendError("post not found");
 
         return $this->sendResponse(new PostResource($post), 'show post');
     }
