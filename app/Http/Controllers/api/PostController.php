@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\API\BaseController;
+use App\Http\Resources\ShowPostResource;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -21,6 +22,6 @@ class PostController extends BaseController
         
         if (!$post) return $this->sendError("post not found");
 
-        return $this->sendResponse(new PostResource($post), 'show post');
+        return $this->sendResponse(new ShowPostResource($post), 'show post');
     }
 }

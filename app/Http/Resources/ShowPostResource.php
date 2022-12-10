@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\ShowPostResource;
 
 class ShowPostResource extends JsonResource
 {
@@ -21,7 +22,7 @@ class ShowPostResource extends JsonResource
             'description' => $this->description,
             'ingredient' => $this->ingredient,
             'direction' => $this->direction,
-            'comments' => $this->comments
+            'comments' => CommentResource::collection($this->comments)
         ];
     }
 }
