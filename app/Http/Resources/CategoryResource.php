@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostResource extends JsonResource
+class CategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,15 +14,9 @@ class PostResource extends JsonResource
      */
     public function toArray($request)
     {
-        $descriptions = str_replace("\r\n", " ", $this->description);
-
         return [
             'id' => $this->id,
-            'image' => asset('storage/' . $this->image),
-            'category_id' => $this->category->id,
-            'category' => $this->category->name,
-            'title' => $this->title,
-            'description' => $descriptions
+            'name' => $this->name
         ];
     }
 }

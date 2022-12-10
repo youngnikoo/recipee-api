@@ -26,6 +26,8 @@ class ShowPostResource extends JsonResource
             'description' => $descriptions,
             'ingredient' => explode(',', $ingredients),
             'direction' => explode(',', $directions),
+            'category_id' => $this->category->id,
+            'category' => $this->category->name,
             'comments' => CommentResource::collection($this->comments)
         ];
     }

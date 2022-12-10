@@ -11,13 +11,29 @@ use Illuminate\Http\Response;
 
 class PostController extends BaseController
 {
-    public function getAllPost() {
+    public function getPostWithLimit($limit)
+    {
+        $posts = Post::limit($limit)->get();
+
+        return $this->sendResponse(PostResource::collection($posts), 'list all posts with limit');
+    }
+
+    public function getAllPost() 
+    {
         $posts = Post::all();
     
         return $this->sendResponse(PostResource::collection($posts), 'list all posts');
     }
 
-    public function show($id) {
+    public function getPostByCategory($id)
+    {
+        $posts = Post::where('category_id', $id)->get();
+
+        return $this->sendResponse(PostResource::collection($posts), 'list post by category');
+    }
+
+    public function show($id) 
+    {
         $post = Post::find($id);
         
         if (!$post) return $this->sendError("post not found");
