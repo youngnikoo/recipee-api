@@ -6,7 +6,7 @@ Technology using : Deploy on Heroku, Database MySQL, Framework Laravel, Cloud fo
 
 ### Endpoint Usage
 ---
-**Base Url** : `http://api-recipee.herokuapp.com/`
+**Base Url** : `http://api-recipee.herokuapp.com/` ### USING POSTMAN
 
 | Endpoint | Usage | Example |
 |----------|-------|---------|
