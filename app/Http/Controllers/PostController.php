@@ -49,7 +49,7 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:100',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string',
             'category' => 'required',
             'ingredient' => 'required|string',
             'direction' => 'required|string',
@@ -112,7 +112,7 @@ class PostController extends Controller
 
         $request->validate([
             'title' => 'required|string|max:100',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string',
             'ingredient' => 'required|string',
             'direction' => 'required|string',
             'image' => 'mimes:jpg,png,jpeg'
