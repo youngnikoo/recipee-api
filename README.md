@@ -18,3 +18,4 @@ Technology using : Deploy on Heroku, Database MySQL, Framework Laravel, Cloud fo
 | recipe detail | `/api/posts/:id` | `api/posts/14 (14,24,34,54...) (+10)` |
 | get all comments | `/api/comments/:post_id` | `/api/comments/14 (14,24,34,54...) (+10)` |
 | create comments | `/api/comments` | - |
+| search posts | `/api/search/posts?q=query` | `/api/search/posts?q=strawberry (by title & desc)` |
