@@ -18,6 +18,16 @@ class PostController extends BaseController
         return $this->sendResponse(PostResource::collection($posts), 'list all posts with limit');
     }
 
+    public function searchPosts(Request $request)
+    {
+        $query = $request->q;
+        $posts = Post::where('title', 'like', '%' . $query . '%')
+                     ->orWhere('description', 'like', '%' . $query . '%')
+                     ->get();
+
+        return $this->sendResponse(PostResource::collection($posts), 'list posts');
+    }
+
     public function getAllPost() 
     {
         $posts = Post::all();

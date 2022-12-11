@@ -26,6 +26,7 @@ Route::controller(PostController::class)->group(function () {
   Route::get('posts', 'getAllPost'); 
   Route::get('posts/category/{id}', 'getPostByCategory');
   Route::get('posts/limit/{limit}', 'getPostWithLimit');
+  Route::get('search/posts', 'searchPosts');
 });
 
 Route::controller(CommentController::class)->group(function () {
